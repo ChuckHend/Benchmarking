@@ -3,7 +3,10 @@ import multiprocessing
 import time
 import sys
 
-x = int(sys.argv[1])
+if len(sys.argv) >1:
+    x = int(sys.argv[1])
+else:
+    x = 1000
 
 def processInput(i):
 	return i * i
@@ -15,4 +18,5 @@ if __name__ == '__main__':
     inputs = range(x)
     start = time.process_time()
     results = Parallel(n_jobs=num_cores)(delayed(processInput)(i) for i in inputs)
-    print('{} seconds'.format(time.process_time()-start))
+    time = round(time.process_time()-start,4)
+    print('{} seconds'.format(time))
